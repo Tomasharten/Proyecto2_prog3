@@ -83,71 +83,71 @@ class Profile extends Component {
   } 
 }
 
-// const styles = StyleSheet.create({
+const styles = StyleSheet.create({
 
-//   containerDatos:{
-//     flex: 1, 
-//     justifyContent: 'center',
-//     paddingHorizontal: 32,
-//     backgroundColor: '#E0E4EA',
-//   },
+  containerDatos:{
+    flex: 1, 
+    justifyContent: 'center',
+    paddingHorizontal: 32,
+    backgroundColor: '#E0E4EA',
+  },
 
-//   publicaciones:{
-//     flex: 8, 
-//   },
+  publicaciones:{
+    flex: 8, 
+  },
 
-//   usuarioYMail:{
-//     flexDirection: 'column',
-//     width: '100%'
-//   },
+  usuarioYMail:{
+    flexDirection: 'column',
+    width: '100%'
+  },
 
-//   text:{
-//     textAlign: 'left',
-//     fontSize: 14,
-//   },
+  text:{
+    textAlign: 'left',
+    fontSize: 14,
+  },
 
-//   textPublicaciones:{
-//     textAlign: 'left',
-//     fontSize: 14,
-//     fontWeight: 'bold',
-//   },
+  textPublicaciones:{
+    textAlign: 'left',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
 
-//   botton:{
-//     textAlign: 'center',
-//     backgroundColor: '#0095F6',
-//     padding: 5,
-//     borderRadius: 8,
-//     borderWidth: 1,
-//     borderColor: '#ccc',
-//     marginBottom: 5,
-//     fontWeight: 'bold',
-//     color:'#FFFFFF',
-//     fontSize: 17,
-//   },
+  botton:{
+    textAlign: 'center',
+    backgroundColor: '#0095F6',
+    padding: 5,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    marginBottom: 5,
+    fontWeight: 'bold',
+    color:'#FFFFFF',
+    fontSize: 17,
+  },
 
-//   image:{
-//     height: "80%",
-//     width: "25%",
-//     borderRadius: "40%",
-//     justifyContent: 'center',
-//     alignItems: 'center'
-//   },
+  image:{
+    height: "80%",
+    width: "25%",
+    borderRadius: "40%",
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
 
-//   card:{
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     flex: 2,
-//   },
+  card:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 2,
+  },
 
-//   textCard:{
-//     fontSize: 14,
-//     fontWeight: 'bold',
-//     color: 'black',
-//     marginLeft: "5%",
-//   }
+  textCard:{
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'black',
+    marginLeft: "5%",
+  }
 
 
-// })
+})
 
 
 export default Profile

@@ -4,17 +4,20 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Register from "./src/screens/Register/Register";
 import Login from "./src/screens/Login/Login";
+import Home from "./src/screens/Home/Home";
+import Profile from "./src/screens/Profile/Profile";
+import UserProfile from "./src/screens/UserProfile/UserProfile"
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer style={styles.container}>
-    <Stack.Navigator>
-    { <Stack.Screen name='Login' component={Login} options={ { headerShown: false } }/>
-      /*<Stack.Screen name='Home' component={Home} options={ { headerShown: false } }/> */} 
-      <Stack.Screen name='Register' component={Register} options={ { headerShown: false } }/>
-      {/* <Stack.Screen name='Profile' component={Profile} options={ { headerShown: false } }/>
-      <Stack.Screen name='FriendProfile' component={FriendProfile} options={ { headerShown: false } }/> */}
+      <Stack.Navigator>
+        <Stack.Screen name='Login' component={Login} options={ { headerShown: false } }/>
+        <Stack.Screen name='Home' component={Home} options={ { headerShown: false } }/> 
+        <Stack.Screen name='Register' component={Register} options={ { headerShown: false } }/>
+        <Stack.Screen name='Profile' component={Profile} options={ { headerShown: false } }/>
+        <Stack.Screen name='UserProfile' component={UserProfile} options={ { headerShown: false } }/>
     </Stack.Navigator>
   </NavigationContainer>
   )
