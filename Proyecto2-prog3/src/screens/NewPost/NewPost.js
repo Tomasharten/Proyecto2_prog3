@@ -4,6 +4,7 @@ import { db, auth } from '../../firebase/config'
 import Camera from '../../components/Camera/Camera'
 
 class NewPosts extends Component {
+  
     constructor(){
         super()
         this.state={
@@ -12,6 +13,7 @@ class NewPosts extends Component {
             fotoUrl: ''
         }
     }
+
     guardarPost(text){
         db.collection('posts').add({
             email: auth.currentUser.email,
@@ -37,6 +39,7 @@ class NewPosts extends Component {
             mostrarCamara: false
         })
     }
+  
     render() {
         return (
         <View style={styles.container}>
@@ -59,6 +62,7 @@ class NewPosts extends Component {
         )
     }
 }
+
 const styles = StyleSheet.create({
     container:{
         flex: 1,
@@ -89,10 +93,3 @@ const styles = StyleSheet.create({
 })
 
 export default NewPosts
-
-
-
-
-
-
-
