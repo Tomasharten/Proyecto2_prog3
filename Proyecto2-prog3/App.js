@@ -8,6 +8,8 @@ import Home from "./src/screens/Home/Home";
 import Profile from "./src/screens/Profile/Profile";
 import UserProfile from "./src/screens/UserProfile/UserProfile";
 import NewPost from "./src/screens/NewPost/NewPost";
+import Menu from "./src/components/Menu/Menu";
+import Buscador from "./src/screens/Buscador/Buscador";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -20,7 +22,9 @@ export default function App() {
         <Stack.Screen name='Profile' component={Profile} options={ { headerShown: false } }/>
         <Stack.Screen name='UserProfile' component={UserProfile} options={ { headerShown: false } }/>
         <Stack.Screen name='NewPost' component={NewPost} options={ { headerShown: false } }/>
-    </Stack.Navigator>
+        <Stack.Screen name='Buscador' component={Buscador} options={ { headerShown: false } }/>
+        <Stack.Screen name='Menu' component={Menu} options={ { headerShown: false } }/>
+      </Stack.Navigator>
   </NavigationContainer>
   )
 }

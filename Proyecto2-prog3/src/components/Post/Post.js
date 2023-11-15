@@ -9,8 +9,8 @@ class Post extends Component {
         super(props)
         this.state = {
             like: false,
-            cantidadLikes: props.data.likes.length,
-            cantidadComentarios: props.data.comentarios.length,
+            cantidadLikes: this.props.data.likes.length,
+            cantidadComentarios: props.data.comentarios.length, 
             data: {},
             miPost: false,
         }
@@ -79,8 +79,8 @@ class Post extends Component {
                 source={{uri: this.state.data.foto}} 
                 resizeMode = 'cover'
             />  
-            <TouchableOpacity onPress={()=> this.props.navigation.navigate('HomeNavigation', {
-                screen: 'UsersProfile',
+            <TouchableOpacity onPress={()=> this.props.navigation.navigate('Home', {
+                screen: 'Profile',
                 params:{
                     email: this.props.data.email
                 }
@@ -106,7 +106,7 @@ class Post extends Component {
                     </TouchableOpacity>
             }
 
-            <TouchableOpacity style={{marginLeft: 8}} onPress={() => this.props.navigation.navigate('comments', {
+            <TouchableOpacity style={{marginLeft: 8}} onPress={() => this.props.navigation.navigate('Comment', {
                         id:this.props.id,
                         comentarios: this.props.data.comentarios
                 })}> 
@@ -120,7 +120,7 @@ class Post extends Component {
         {
             this.state.cantidadComentarios === 0 ? 
             <View>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Comments', { 
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Comment', { 
                         id: this.props.id,
                         comentarios: this.props.data.comentarios
                 })}><Text style={styles.text}>Agregar comentario</Text> 
@@ -129,7 +129,7 @@ class Post extends Component {
                 <Text>Aún no hay comentarios</Text>
             </View>
             :
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Comments', {
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Comment', {
                 id: this.props.id,
                 comentarios: this.props.data.comentarios
             })}><Text style={styles.text}>Ver los {this.state.cantidadComentarios} comentarios </Text> 
