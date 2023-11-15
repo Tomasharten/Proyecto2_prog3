@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 class Camara extends Component {
     constructor(){
         super()
-        this.metodosCamara = null
+        this.metodosCamara = ''
         this.state = {
             mostrarCamara: false,
             fotoUri: ''

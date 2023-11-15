@@ -46,6 +46,13 @@ class Home extends Component {
         <TouchableOpacity onPressOut={()=> this.props.navigation.navigate('Profile')}>
             <Text>Tu perfil</Text>
         </TouchableOpacity>
+        <TouchableOpacity onPressOut={()=> this.props.navigation.navigate('Buscador')}>
+            <Text>Buscador</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPressOut={()=> this.props.navigation.navigate('NewPost')}>
+            <Text>Subir Post</Text>
+        </TouchableOpacity>
+        
             <View style={styles.subcontainer}>
                 <FlatList 
                 data = {this.state.posteos}

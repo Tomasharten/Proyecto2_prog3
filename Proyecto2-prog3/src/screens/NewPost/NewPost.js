@@ -1,7 +1,7 @@
 import { Text, View, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { Component } from 'react'
 import { db, auth } from '../../firebase/config'
-import Camera from '../../components/Camera/Camera'
+import Camera from '../../components/Camara/Camara'
 
 class NewPosts extends Component {
   
@@ -12,6 +12,7 @@ class NewPosts extends Component {
             mostrarCamara: true,
             fotoUrl: ''
         }
+        this.metodosDeCamara = '' // 
     }
 
     guardarPost(text){

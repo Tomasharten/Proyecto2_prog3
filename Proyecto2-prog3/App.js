@@ -6,7 +6,8 @@ import Register from "./src/screens/Register/Register";
 import Login from "./src/screens/Login/Login";
 import Home from "./src/screens/Home/Home";
 import Profile from "./src/screens/Profile/Profile";
-import UserProfile from "./src/screens/UserProfile/UserProfile"
+import UserProfile from "./src/screens/UserProfile/UserProfile";
+import NewPost from "./src/screens/NewPost/NewPost";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
         <Stack.Screen name='Register' component={Register} options={ { headerShown: false } }/>
         <Stack.Screen name='Profile' component={Profile} options={ { headerShown: false } }/>
         <Stack.Screen name='UserProfile' component={UserProfile} options={ { headerShown: false } }/>
+        <Stack.Screen name='NewPost' component={NewPost} options={ { headerShown: false } }/>
     </Stack.Navigator>
   </NavigationContainer>
   )
