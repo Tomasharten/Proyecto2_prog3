@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import {db, auth} from '../../firebase/config'
 import Post from '../../components/Post/Post'
 
-class UserProfile extends Component {
+class UsersProfile extends Component {
 
     constructor(props){
         console.log(props)
@@ -18,6 +18,7 @@ class UserProfile extends Component {
 
     componentDidMount(){
         db.collection('users')
+        // console.log("users")
         .where('email', '==', this.props.route.params.email)
         .onSnapshot(doc => {
           doc.forEach(doc => this.setState({
@@ -174,4 +175,4 @@ const styles = StyleSheet.create({
   })
   
 
-export default UserProfile;
+export default UsersProfile;
