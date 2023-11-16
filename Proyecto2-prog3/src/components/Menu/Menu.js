@@ -18,7 +18,7 @@ class Menu extends Component {
     render() {
         return (
 
-        <NavigationContainer>
+        
             <Tab.Navigator style={styles.tab}>
                 <Tab.Screen   
                 name="Home"
@@ -57,7 +57,7 @@ class Menu extends Component {
                 }}
                 />
             </Tab.Navigator>
-        </NavigationContainer>
+        
         )
     }
     

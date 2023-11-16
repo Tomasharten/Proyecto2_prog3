@@ -2,6 +2,7 @@ import { Text, View, StyleSheet, TextInput, TouchableOpacity,  FlatList, } from 
 import React, { Component } from 'react'
 import { auth, db } from '../../firebase/config'
 import {SearchBar } from 'react-native'
+import UserProfile from '../UserProfile/UserProfile';
 
 class Search extends Component {
     constructor(props){
@@ -68,8 +69,8 @@ class Search extends Component {
               keyExtractor={(item) => item.id}
               renderItem= {({item}) => <View>
                 
-                <TouchableOpacity onPress={()=> this.props.navigation.navigate('HomeNavigation', {
-                  screen: 'UsersProfile',
+                <TouchableOpacity onPress={()=> this.props.navigation.navigate(UserProfile , {
+                  screen: UserProfile,
                   params:{
                     email: item.data.email
                   }})}>

@@ -3,9 +3,10 @@ import React, { Component } from 'react'
 import {db, auth} from '../../firebase/config'
 import Post from '../../components/Post/Post'
 
-class UsersProfile extends Component {
+class UserProfile extends Component {
 
     constructor(props){
+        console.log(props)
         super(props)
         this.state={
           misDatos: {},
@@ -173,4 +174,4 @@ const styles = StyleSheet.create({
   })
   
 
-export default UsersProfile;
+export default UserProfile;

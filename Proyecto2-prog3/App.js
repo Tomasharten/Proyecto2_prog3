@@ -17,12 +17,12 @@ export default function App() {
     <NavigationContainer style={styles.container}>
       <Stack.Navigator>
         <Stack.Screen name='Login' component={Login} options={ { headerShown: false } }/>
-        <Stack.Screen name='Home' component={Home} options={ { headerShown: false } }/> 
+        {/* <Stack.Screen name='Home' component={Home} options={ { headerShown: false } }/>  */}
         <Stack.Screen name='Register' component={Register} options={ { headerShown: false } }/>
-        <Stack.Screen name='Profile' component={Profile} options={ { headerShown: false } }/>
-        <Stack.Screen name='UserProfile' component={UserProfile} options={ { headerShown: false } }/>
-        <Stack.Screen name='NewPost' component={NewPost} options={ { headerShown: false } }/>
-        <Stack.Screen name='Buscador' component={Buscador} options={ { headerShown: false } }/>
+        {/* <Stack.Screen name='Profile' component={Profile} options={ { headerShown: false } }/> */}
+        {<Stack.Screen name='UserProfile' component={UserProfile} options={ { headerShown: false } }/> }
+        {/* <Stack.Screen name='NewPost' component={NewPost} options={ { headerShown: false } }/>
+        <Stack.Screen name='Buscador' component={Buscador} options={ { headerShown: false } }/> */} 
         <Stack.Screen name='Menu' component={Menu} options={ { headerShown: false } }/>
       </Stack.Navigator>
   </NavigationContainer>

@@ -1,4 +1,4 @@
-import { FlatList, Image, View, StyleSheet, TouchableOpacity, TextInput, Text } from 'react-native';
+import { FlatList, Image, View, StyleSheet, TouchableOpacity, TextInput, Text, ScrollView } from 'react-native';
 import React, { Component } from 'react';
 import { auth, db } from '../../firebase/config';
 import Post from '../../components/Post/Post';
@@ -43,16 +43,7 @@ class Home extends Component {
           resizeMode = 'contain' 
         ></Image> */}
         <Text style={styles.title}> HOME PAGE</Text>
-        <TouchableOpacity onPressOut={()=> this.props.navigation.navigate('Profile')}>
-            <Text>Tu perfil</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPressOut={()=> this.props.navigation.navigate('Buscador')}>
-            <Text>Buscador</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPressOut={()=> this.props.navigation.navigate('NewPost')}>
-            <Text>Subir Post</Text>
-        </TouchableOpacity>
-        
+        <ScrollView>
             <View style={styles.subcontainer}>
                 <FlatList 
                 data = {this.state.posteos}
@@ -60,6 +51,7 @@ class Home extends Component {
                 renderItem = {(item) => <Post navigation={this.props.navigation} data={item.item.data} id={item.item.id} />} 
           />
             </View>
+            </ScrollView>
         </View>
     )
   }
