@@ -38,11 +38,12 @@ class Home extends Component {
     console.log(this.state.posteos)
     return (
       <View>
-        {/* <Image style={styles.image}
-          source={require('../../../assets/favicon.png')}
+         <Image style={styles.image}
+          source={require('../../../assets/Selfie.png')}
           resizeMode = 'contain' 
-        ></Image> */}
-        <Text style={styles.title}> HOME PAGE</Text>
+        ></Image> 
+        <Text style={styles.title}> HOME PAGE </Text>
+        
         <ScrollView>
             <View style={styles.subcontainer}>
                 <FlatList  //// NO ANDA EL SCROL EN HOME
@@ -65,16 +66,19 @@ const styles = StyleSheet.create({
     flex:5
   },
   image:{
-    height: 40,
+    height: 130,
+    width:130,
     marginTop: 5,
-    marginBottom: 10
+    marginBottom: 10,
+    borderRadius: 500,
+    alignSelf: 'center'
   },
   title:{
     textAlign: 'center',
     fontSize: 25,
     marginBottom: 15,
     fontWeight: 'bold',
-    color: '#0095F6',
+    color: 'green',
 }
 })
 

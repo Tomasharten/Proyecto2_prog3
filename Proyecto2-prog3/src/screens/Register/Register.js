@@ -101,12 +101,12 @@ class Register extends Component {
                 <View>
                     <Text >¿Ya tienes una cuenta?</Text>
                     <TouchableOpacity onPress={()=> this.props.navigation.navigate('Login')}>
-                        <Text >Iniciar sesión</Text>
+                        <Text style = {styles.login}>Iniciar sesión</Text>
                     </TouchableOpacity>
                 </View>
                 {
                     this.state.error !== '' ?
-                    <Text>{this.state.error}</Text>:
+                    <Text style = {styles.error}>{this.state.error}</Text>:
                     ''
                 }
             </View>
@@ -119,11 +119,11 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         justifyContent:'center',
-        paddingHorizontal:32
+        paddingHorizontal:30
     },
 
     input:{
-        borderColor: '#ccc',
+        borderColor: 'grey',
         borderWidth: 2,
         marginBottom: 10,
         padding: 10,
@@ -136,28 +136,30 @@ const styles = StyleSheet.create({
         fontSize: 24,
         marginBottom: 15,
         fontWeight: 'bold',
-        color: '#0095F6',
+        color: 'green',
     },
 
     botton:{
         textAlign: 'center',
-        backgroundColor: '#0095F6',
+        backgroundColor: 'green',
         padding: 5,
         borderRadius: 8,
         borderWidth: 1,
         borderColor: '#ccc',
-        marginBottom: 5,
+        marginBottom: 15,
+        marginTop: 10,
         fontWeight: 'bold',
-        color:'#FFFFFF',
+        color:'white',
         fontSize: 17,
     },
 
-    loguin:{
-        color: '#0095F6',
+    login:{
+        color: 'green',
         fontWeight: 'bold'
     },
-    advert:{
-        color: 'red',
+    error:{
+        fontSize:16,
+        color: 'red'
       }
 })
 

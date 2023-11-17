@@ -98,20 +98,22 @@ class Post extends Component {
             {
                 this.state.like ?
                     <TouchableOpacity onPress={()=> this.unlike()}>
-                        <FontAwesome name='heart' color='#0095F6' size={30} />
+                        <FontAwesome name='heart' color='green' size={30} />
+                        <Text>Unlike</Text>
                     </TouchableOpacity>
                 :
                     <TouchableOpacity onPress={()=> this.like()}>
                         <FontAwesome name='heart-o' color='black' size={30} />
+                        <Text>Like</Text>
                     </TouchableOpacity>
             }
 
-            <TouchableOpacity style={{marginLeft: 8}} onPress={() => this.props.navigation.navigate('Comment', {
+            {/* <TouchableOpacity style={{marginLeft: 8}} onPress={() => this.props.navigation.navigate('Comment', {
                         id:this.props.id,
                         comentarios: this.props.data.comentarios
                 })}> 
                 <Ionicons name="ios-chatbubble-outline"  color="black" size={30} />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>
 
         <Text style={styles.text}>{this.state.cantidadLikes} Me gusta</Text>
