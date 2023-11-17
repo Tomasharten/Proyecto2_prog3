@@ -69,11 +69,11 @@ class Search extends Component {
               keyExtractor={(item) => item.id}
               renderItem= {({item}) => <View>
                 
-                <TouchableOpacity onPress={()=> this.props.navigation.navigate('UsersProfile', {
-                  screen: 'UsersProfile',
-                  params:{
+                <TouchableOpacity onPress={()=> this.props.navigation.navigate('UserProfile', {
+                 
+                 
                     email: item.data.email
-                  }})}>
+                  })}>
                   <Text style={styles.textUser}>{item.data.usuario}</Text>
                 </TouchableOpacity>  
                 

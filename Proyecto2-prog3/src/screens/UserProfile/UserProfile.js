@@ -17,9 +17,9 @@ class UsersProfile extends Component {
     }
 
     componentDidMount(){
-        db.collection('users')
+        
         console.log(this.props.route.params)
-        .where('email', '==', this.props.route.params.params.email)
+        db.collection('users').where('email', '==', this.props.route.params.email)
         .onSnapshot(doc => {
           doc.forEach(doc => this.setState({
             id: doc.id,
@@ -44,8 +44,7 @@ class UsersProfile extends Component {
     }
 
     componentDidUpdate(){
-      db.collection('users')
-      .where('email', '==', this.props.route.params.params.email)
+      db.collection('users').where('email', '==', this.props.route.params.email)
       .onSnapshot(doc => {
         doc.forEach(doc => this.setState({
           id: doc.id,
@@ -53,7 +52,7 @@ class UsersProfile extends Component {
         })) 
       })
       db.collection('posts')
-      .where('email', '==', this.props.route.params.params.email)
+      .where('email', '==', this.props.route.params.email)
       .onSnapshot(docs => {
         let posts = []
         docs.forEach(doc => {

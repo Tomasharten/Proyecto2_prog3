@@ -80,10 +80,10 @@ class Post extends Component {
                 resizeMode = 'cover'
             />  
             <TouchableOpacity onPress={()=> this.props.navigation.navigate('UserProfile', {
-                screen: 'UserProfile',
-                params:{
+                // screen: 'UserProfile',
+                // params:{
                     email: this.props.data.email
-                }
+                // }
              })}>
                 <Text style={styles.textProfile}>{this.props.data.email}</Text>
             </TouchableOpacity>  
