@@ -12,18 +12,23 @@ class Register extends Component {
             usuario:'', 
             biografia:'', 
             foto:'', 
-            error:''
-        }
+            errorMail:false,
+            errorContra: false,
+            errorUsuario:false
+        };
     }
 
     register(email, contrasenia){
         if (this.state.usuario == ''){
-            this.setState({error:'El usuario no puede quedar vacío'})
-        } else if (this.state.email == ''){
-            this.setState({error:'El email no puede quedar vacío'})
+            this.setState({errorUsuario:true})
         }
-        else {
-        auth.createUserWithEmailAndPassword(email, contrasenia)
+        if (email == ''){
+            this.setState({errorMail:true})
+        }
+        if(contrasenia==''){
+            return this.setState({errorContra: true})
+          }
+            auth.createUserWithEmailAndPassword(email, contrasenia)
             .then(response => 
                 db.collection('users').add({
                     email:auth.currentUser.email,
@@ -36,54 +41,46 @@ class Register extends Component {
             )
             .then((resp) => this.props.navigation.navigate('Login'))
             .catch((error) => console.log(error));
-        }
+        
         
     }
-    // pickImage(){
-    //     ImagePicker.launchImageLibraryAsync() // usuario elige entre sus fotos
-    //     .then(resp => {
-    //         fetch(resp.uri) 
-    //         .then(data => data.blob()) // Paso la uri a BLOB = Binary Large OBject
-    //         .then(image => {
-    //             const ref = storage.ref(`fotosDePerfil/${Date.now()}.jpg`) // Aclaro donde y como se guarda lo foto en el storage de firebase
-    //             ref.put(image) // Guardo la imagen en esa ubicación
-    //             .then(()=> {
-    //                 ref.getDownloadURL() // Recibo la url de la foto para guardarla en la base de datos
-    //                 .then(url => {
-    //                         this.setState({foto:url}) // Guardo la url en el estado
-    //                     }
-    //                 )
-    //             })
-    //         })
-    //         .catch(err => console.log(err))
-    //     })
-    //     .catch(err => console.log(err))
-    // };
+    
 
     render() {
         return (
         <View>
             <View>
                 <Text style={styles.title} >Completa el formulario</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder='Escribi tu email'
-                    onChangeText={text => this.setState({email: text})}
-                    value={this.state.email}
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder='Escribi tu contraseña'
-                    onChangeText={text => this.setState({clave: text})}
-                    value={this.state.clave}
-                    secureTextEntry={true}
-                />
+
+                {this.state.errorNombre ?
+                <Text style={styles.advert}>*Debes ingresar un nombre válido</Text>
+                 : ''}
                 <TextInput
                     style={styles.input}
                     placeholder='Nombre de usuario'
                     onChangeText={text => this.setState({usuario: text})}
                     value={this.state.usuario}
                 />
+                {this.state.errorMail ?
+                <Text style={styles.advert}>*Debes ingresar un mail válido</Text>
+                 : ''}
+                <TextInput
+                    style={styles.input}
+                    placeholder='Escribi tu email'
+                    onChangeText={text => this.setState({email: text})}
+                    value={this.state.email}
+                />
+                {this.state.errorContra ?
+                <Text style={styles.advert}>*Debes ingresar una contraseña válida</Text>
+                 : ''}
+                <TextInput
+                    style={styles.input}
+                    placeholder='Escribi tu contraseña'
+                    onChangeText={text => this.setState({contrasenia: text})}
+                    value={this.state.contrasenia}
+                    secureTextEntry={true}
+                />
+                
                 <TextInput
                     style={styles.input}
                     placeholder='Biografía'
@@ -158,7 +155,10 @@ const styles = StyleSheet.create({
     loguin:{
         color: '#0095F6',
         fontWeight: 'bold'
-    }
+    },
+    advert:{
+        color: 'red',
+      }
 })
 
 export default Register

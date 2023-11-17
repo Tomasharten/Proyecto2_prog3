@@ -45,13 +45,13 @@ class Home extends Component {
         <Text style={styles.title}> HOME PAGE</Text>
         <ScrollView>
             <View style={styles.subcontainer}>
-                <FlatList 
+                <FlatList  //// NO ANDA EL SCROL EN HOME
                 data = {this.state.posteos}
                 keyExtractor = {(item) => item.id.toString()}
                 renderItem = {(item) => <Post navigation={this.props.navigation} data={item.item.data} id={item.item.id} />} 
-          />
+                />                
             </View>
-            </ScrollView>
+        </ScrollView>
         </View>
     )
   }
