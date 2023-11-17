@@ -19,6 +19,8 @@ class Register extends Component {
     register(email, contrasenia){
         if (this.state.usuario == ''){
             this.setState({error:'El usuario no puede quedar vacío'})
+        } else if (this.state.email == ''){
+            this.setState({error:'El email no puede quedar vacío'})
         }
         else {
         auth.createUserWithEmailAndPassword(email, contrasenia)
@@ -37,26 +39,26 @@ class Register extends Component {
         }
         
     }
-    pickImage(){
-        ImagePicker.launchImageLibraryAsync() // usuario elige entre sus fotos
-        .then(resp => {
-            fetch(resp.uri) 
-            .then(data => data.blob()) // Paso la uri a BLOB = Binary Large OBject
-            .then(image => {
-                const ref = storage.ref(`fotosDePerfil/${Date.now()}.jpg`) // Aclaro donde y como se guarda lo foto en el storage de firebase
-                ref.put(image) // Guardo la imagen en esa ubicación
-                .then(()=> {
-                    ref.getDownloadURL() // Recibo la url de la foto para guardarla en la base de datos
-                    .then(url => {
-                            this.setState({foto:url}) // Guardo la url en el estado
-                        }
-                    )
-                })
-            })
-            .catch(err => console.log(err))
-        })
-        .catch(err => console.log(err))
-    };
+    // pickImage(){
+    //     ImagePicker.launchImageLibraryAsync() // usuario elige entre sus fotos
+    //     .then(resp => {
+    //         fetch(resp.uri) 
+    //         .then(data => data.blob()) // Paso la uri a BLOB = Binary Large OBject
+    //         .then(image => {
+    //             const ref = storage.ref(`fotosDePerfil/${Date.now()}.jpg`) // Aclaro donde y como se guarda lo foto en el storage de firebase
+    //             ref.put(image) // Guardo la imagen en esa ubicación
+    //             .then(()=> {
+    //                 ref.getDownloadURL() // Recibo la url de la foto para guardarla en la base de datos
+    //                 .then(url => {
+    //                         this.setState({foto:url}) // Guardo la url en el estado
+    //                     }
+    //                 )
+    //             })
+    //         })
+    //         .catch(err => console.log(err))
+    //     })
+    //     .catch(err => console.log(err))
+    // };
 
     render() {
         return (

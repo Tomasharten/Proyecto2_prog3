@@ -48,20 +48,20 @@ class Login extends Component {
              secureTextEntry={true}
             />
             <View>
-                <TouchableOpacity onPress={()=> this.loguear(this.state.email, this.state.clave)}>
-                    <Text>Entrar</Text>
+                <TouchableOpacity  onPress={()=> this.loguear(this.state.email, this.state.clave)}>
+                    <Text style={styles.button} >Entrar</Text>
                 </TouchableOpacity>
             </View>
 
             <View>
-                <Text>¿Aún no tienes una cuenta?</Text>
+                <Text>¿Aún no estas registrado?</Text>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Register') }>
                     <Text style={styles.register}>Registrate</Text>
                 </TouchableOpacity>
             </View>
             {
                     this.state.error !== '' ?
-                    <Text>{this.state.error}</Text>:
+                    <Text style={styles.error}>El usuario y/o la contraseña estan incorrecto(s) </Text>:
                     ''
             }
         </View>
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         justifyContent:'center',
-        paddingHorizontal:32
+        paddingHorizontal:30
     },
     
     title:{
@@ -82,11 +82,11 @@ const styles = StyleSheet.create({
         fontSize: 25,
         marginBottom: 15,
         fontWeight: 'bold',
-        color: '#0095F6',
+        color: 'green',
     },
     
     input:{
-        borderColor: '#ccc',
+        borderColor: 'gray',
         borderWidth: 2,
         marginBottom: 10,
         padding: 10,
@@ -96,20 +96,24 @@ const styles = StyleSheet.create({
 
     button:{
         textAlign: 'center',
-        backgroundColor: '#0095F6',
+        backgroundColor: 'green',
         padding: 5,
         borderRadius: 8,
         borderWidth: 1,
         borderColor: '#ccc',
-        marginBottom: 5,
-        fontWeight: 'bold',
-        color:'#FFFFFF',
-        fontSize: 17,
+        marginBottom: 15,
+        color:'white',
+        fontSize: 20,
+        fontWeight: 'bold'
     },
 
     register:{
-        color: '#0095F6',
-        fontWeight: 'bold'
+        color: 'green',
+        fontWeight: 'bold',
+    },
+    error:{
+        fontSize:16,
+        color: 'red'
     }
 })
 
