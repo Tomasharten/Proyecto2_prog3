@@ -37,6 +37,7 @@ class Home extends Component {
   render() {
     console.log(this.state.posteos)
     return (
+      <ScrollView>
       <View>
          <Image style={styles.image}
           source={require('../../../assets/Selfie.png')}
@@ -44,7 +45,6 @@ class Home extends Component {
         ></Image> 
         <Text style={styles.title}> HOME PAGE </Text>
         
-        <ScrollView>
             <View style={styles.subcontainer}>
                 <FlatList  //// NO ANDA EL SCROL EN HOME
                 data = {this.state.posteos}
@@ -52,8 +52,9 @@ class Home extends Component {
                 renderItem = {(item) => <Post navigation={this.props.navigation} data={item.item.data} id={item.item.id} />} 
                 />                
             </View>
+          </View>
+
         </ScrollView>
-        </View>
     )
   }
 }
