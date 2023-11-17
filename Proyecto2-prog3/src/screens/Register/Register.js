@@ -12,22 +12,14 @@ class Register extends Component {
             usuario:'', 
             biografia:'', 
             foto:'', 
-            errorMail:false,
-            errorContra: false,
-            errorUsuario:false
+            error:''
         };
     }
 
     register(email, contrasenia){
-        if (this.state.usuario == ''){
-            this.setState({errorUsuario:true})
-        }
-        if (email == ''){
-            this.setState({errorMail:true})
-        }
-        if(contrasenia==''){
-            return this.setState({errorContra: true})
-          }
+         if (this.state.usuario == '' || this.state.email == '' || this.state.contrasenia == '') {
+             this.setState({error: 'Los campos usuarios, email y contrasenia son obligatorios'})
+        }else
             auth.createUserWithEmailAndPassword(email, contrasenia)
             .then(response => 
                 db.collection('users').add({
@@ -36,7 +28,7 @@ class Register extends Component {
                     createdAt: Date.now(), 
                     contrasenia: this.state.contrasenia, 
                     biografia: this.state.biografia,
-                    foto: this.state.foto
+                    foto:''
                 })
             )
             .then((resp) => this.props.navigation.navigate('Login'))
@@ -44,7 +36,7 @@ class Register extends Component {
         
         
     }
-    
+
 
     render() {
         return (
@@ -52,27 +44,27 @@ class Register extends Component {
             <View>
                 <Text style={styles.title} >Completa el formulario</Text>
 
-                {this.state.errorNombre ?
-                <Text style={styles.advert}>*Debes ingresar un nombre válido</Text>
-                 : ''}
+                        {/* {this.state.errorNombre ?
+                        <Text style={styles.advert}>*Debes ingresar un nombre válido</Text>
+                        : ''} */}
                 <TextInput
                     style={styles.input}
                     placeholder='Nombre de usuario'
                     onChangeText={text => this.setState({usuario: text})}
                     value={this.state.usuario}
                 />
-                {this.state.errorMail ?
+                {/* {this.state.errorMail ?
                 <Text style={styles.advert}>*Debes ingresar un mail válido</Text>
-                 : ''}
+                 : ''} */}
                 <TextInput
                     style={styles.input}
                     placeholder='Escribi tu email'
                     onChangeText={text => this.setState({email: text})}
                     value={this.state.email}
                 />
-                {this.state.errorContra ?
+                {/* {this.state.errorContra ?
                 <Text style={styles.advert}>*Debes ingresar una contraseña válida</Text>
-                 : ''}
+                 : ''} */}
                 <TextInput
                     style={styles.input}
                     placeholder='Escribi tu contraseña'
@@ -93,7 +85,7 @@ class Register extends Component {
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <TouchableOpacity onPress={()=> this.register(this.state.email, this.state.clave)}>
+                    <TouchableOpacity onPress={()=> this.register(this.state.email, this.state.contrasenia)}>
                         <Text style = {styles.botton}>Registrarme</Text>
                     </TouchableOpacity>
                 </View>

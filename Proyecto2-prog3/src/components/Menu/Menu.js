@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {FontAwesome} from '@expo/vector-icons';
 
-import Home from "../../screens/Home/Home";
+import HomeNavigation from "../../components/HomeNavigation/HomeNavigation";
 import Profile from "../../screens/Profile/Profile";
 import NewPost from "../../screens/NewPost/NewPost";
 import Buscador from "../../screens/Buscador/Buscador";
@@ -18,12 +18,9 @@ class Menu extends Component {
     render() {
         return (
             <Tab.Navigator style={styles.tab}>
-                {/* <Image>
-                    source={require('../../../assets/Selfie.png')}
-                </Image> */}
                 <Tab.Screen   
-                name="Home"
-                component={Home} 
+                name="HomeNavigation"
+                component={HomeNavigation} 
                 options={{ 
                     tabBarIcon:() => <FontAwesome name="home" size = {15} color="black"/>,
                     headerShown:false,

@@ -80,14 +80,14 @@ const styles = StyleSheet.create({
 
     button:{
       textAlign: 'center',
-      backgroundColor: '#0095F6',
+      backgroundColor: 'green',
       padding: 5,
       borderRadius: 8,
       borderWidth: 1,
       borderColor: '#ccc',
       marginBottom: 10,
       fontWeight: 'bold',
-      color:'#FFFFFF',
+      color:'white',
       fontSize: 17
   },
 

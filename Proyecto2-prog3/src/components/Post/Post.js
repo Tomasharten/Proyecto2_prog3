@@ -79,8 +79,8 @@ class Post extends Component {
                 source={{uri: this.state.data.foto}} 
                 resizeMode = 'cover'
             />  
-            <TouchableOpacity onPress={()=> this.props.navigation.navigate('Home', {
-                screen: 'Profile',
+            <TouchableOpacity onPress={()=> this.props.navigation.navigate('UserProfile', {
+                screen: 'UserProfile',
                 params:{
                     email: this.props.data.email
                 }
@@ -108,12 +108,12 @@ class Post extends Component {
                     </TouchableOpacity>
             }
 
-            {/* <TouchableOpacity style={{marginLeft: 8}} onPress={() => this.props.navigation.navigate('Comment', {
+            <TouchableOpacity style={{marginLeft: 8}} onPress={() => this.props.navigation.navigate('Comment', {
                         id:this.props.id,
                         comentarios: this.props.data.comentarios
                 })}> 
                 <Ionicons name="ios-chatbubble-outline"  color="black" size={30} />
-            </TouchableOpacity> */}
+            </TouchableOpacity>
         </View>
 
         <Text style={styles.text}>{this.state.cantidadLikes} Me gusta</Text>
