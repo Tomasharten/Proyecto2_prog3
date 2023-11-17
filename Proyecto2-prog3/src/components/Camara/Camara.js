@@ -5,44 +5,51 @@ import { storage } from '../../firebase/config'
 import { Ionicons } from '@expo/vector-icons'; 
 
 class Camara extends Component {
-    constructor(){
-        super()
-        this.metodosCamara = ''
+    constructor(props){
+        super(props)  
         this.state = {
-            mostrarCamara: false,
+            permisosDeHardware: false,
+            mostrarCamara: true,
             fotoUri: ''
         }
+        this.metodosCamara = ''
     }
 
     // Permisos
     componentDidMount(){
         Camera.requestCameraPermissionsAsync()
-        .then(()=> this.setState({
-            mostrarCamara: true
+        .then(()=>
+            this.setState({
+            permisosDeHardware: true,
+
         }))
         .catch(err => console.log(err))
     }
 
     tomarFoto(){
         this.metodosCamara.takePictureAsync()
-        .then( img => this.setState({  // guardo la img en espacio en memoria temporal 
+        .then( img => 
+            this.setState({  // guardo la img en espacio en memoria temporal 
             fotoUri: img.uri, 
-            mostrarCamara: false
+            mostrarCamara: false,
         }))
         .catch(err => console.log(err))
         
     }
 
-    aceptar(url){
-        fetch(url)
+    aceptar(){
+        fetch(this.state.fotoUri)
         .then(img => img.blob()) // parceo la imagen en binario a un formato valido para js
         .then(imagenOk =>{
             const ref = storage.ref(`fotos/${Date.now()}.jpg`) // guardo la imagen en el storage de firebase
             ref.put(imagenOk)
             .then(()=>{
                 ref.getDownloadURL() // trae la ruta real con la que esta guardada la imagen en firebase
-                .then((url)=>{
-                    this.props.subirFoto(url)
+                .then( url =>{
+                    this.props.subirFoto(url);
+                    this.setState({
+                        fotoUri: ''
+                    })
                 })
             })
         })
@@ -61,86 +68,86 @@ class Camara extends Component {
       <View style={styles.container}>
         
         {
-            this.state.mostrarCamara ? 
-            <>
-                <Camera
-                    style={styles.camara}
-                    type={Camera.Constants.Type.front}
-                    ref={metodosDelComponente => this.metodosCamara = metodosDelComponente}
-                />
-                <View style={styles.tomarFoto}>
-                    <TouchableOpacity onPress={()=> this.tomarFoto()}>
-                        <Ionicons name="radio-button-on" size={80} color="black" />
-                    </TouchableOpacity>
-                </View>
-            </> 
-
-            : this.state.mostrarCamara === false && this.state.fotoUri !== '' ?
-
-            <>
+            this.state.permisosDeHardware === true ?
+            this.state.mostrarCamara== false ? 
+            <React.Fragment>
                 <Image
-                    style={styles.image}
                     source={{uri: this.state.fotoUri}}
+                    style={styles.cameraBody}
                 />
-                <View style={styles.content}>
-                    <TouchableOpacity onPress={()=> this.aceptar(this.state.fotoUri)}>
-                        <Text style={styles.button} >Aceptar</Text>
+                <View style={styles.confirm}>
+                    <TouchableOpacity style={styles.cancelButton} onPress={()=> this.rechazar()}>
+                        <Text style= {styles.textButton}> Cancelar</Text>
                     </TouchableOpacity>
-
-                    <TouchableOpacity onPress={()=> this.rechazar()}>
-                        <Text style={styles.button} >Rechazar</Text>
-                    </TouchableOpacity>
-                </View>
-            </> : 
-            
-            <Text>No tienes permiso para usar la Camara</Text>
-        }
-      </View>
+                <TouchableOpacity style={styles.confirmButton} onPress={()=>this.aceptar()}>
+                <Text style={styles.textButton}>Aceptar</Text>
+                            </TouchableOpacity>
+            </View>
+        </React.Fragment>
+            :
+            <React.Fragment>
+                <Camera
+                    style = { styles.cameraBody }
+                    type={ Camera.Constants.Type.front}
+                    ref={ metodosCamara => this.metodosCamara = metodosCamara}
+                />
+                <TouchableOpacity style = { styles.button } onPress={()=>this.tomarFoto()}>
+                        <Text style = { styles.textButton }>Sacar Foto</Text>
+                </TouchableOpacity> 
+                </React.Fragment>
+                :
+                <Text>La cámara no tiene permisos para ser usada</Text>
+        } 
+            </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
     container:{
-        flex: 1,
-    },
-
-    camara:{
-        marginTop: 10,
-        marginLeft: 10,
-        marginRight:10
-    },
-
-    image:{
-        flex:1,
-        width:"100%",
-        marginTop: 10,
-        marginLeft: 10,
-        marginRight:10
-    },
-
-    tomarFoto:{
-        alignItems: 'center'
-    },
-
-    content:{
-        flexDirection: 'row',
-        justifyContent: 'center',
-    }, 
-    
-    button:{
-        textAlign: 'center',
-        backgroundColor: 'green',
+        height:"45vh",
+        marginBottom: 20,
+        marginHorizontal:5,
         padding: 10,
-        borderRadius: 8,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        fontWeight: 'bold',
-        color:'white',
-        margin: 10,
-        marginTop: 17,
-        fontSize: 15
+        
     },
+    cameraBody: {
+      marginTop: 20,
+      marginBottom: 10,
+      height:"40vh",
+    },
+    button:{
+        backgroundColor:'#28a745',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: 'center',
+        borderRadius:4, 
+        borderWidth:1,
+        borderStyle: 'solid',
+        borderColor: '#28a745'
+    },
+    textButton:{
+        color: '#fff',
+        textAlign: "center"
+    },
+    confirm:{
+        flexDirection:"row",
+        justifyContent: "space-between"
+    },
+    confirmButton:{
+        backgroundColor:'#28a745',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: 'center',
+        borderRadius:4, 
+    },
+    cancelButton:{
+        backgroundColor:'#dc3545',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: 'center',
+        borderRadius:4, 
+    }
 })
 
 export default Camara

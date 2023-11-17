@@ -18,8 +18,9 @@ class UsersProfile extends Component {
 
     componentDidMount(){
         db.collection('users')
-        // console.log("users")
+        console.log('users')
         .where('email', '==', this.props.route.params.email)
+        console.log(this.props.route.params.email)
         .onSnapshot(doc => {
           doc.forEach(doc => this.setState({
             id: doc.id,

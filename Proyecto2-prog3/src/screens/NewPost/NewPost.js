@@ -9,88 +9,91 @@ class NewPosts extends Component {
         super()
         this.state={
             descripcion: '',
-            mostrarCamara: true,
             fotoUrl: ''
         }
-        this.metodosDeCamara = '' // 
     }
 
-    guardarPost(text){
+    guardarPost(email,descripcion,fotoUrl,createdAt){
         db.collection('posts').add({
-            email: auth.currentUser.email,
-            createdAt: Date.now(),
-            descripcion: text,
+            email: email,
+            createdAt: createdAt,
+            descripcion: descripcion,
             likes: [],
             comentarios: [],
-            foto: this.state.fotoUrl
+            fotoUrl:fotoUrl,
         })
-        .then( () => this.props.navigation.navigate('Home'))
-        .catch( err => this.setState({error:err.message}))
+        .then(res => {
+            console.log('Creando post...');
+            this.setState({
+                descripcion:'',
+            })
 
-        this.setState({
-            descripcion: '',
-            mostrarCamara: true,
-            fotoUrl: ''
-        })  
+        }) 
+        .catch( e => console.log(e))
     }
 
     subirFoto(url){
         this.setState({
             fotoUrl: url,
-            mostrarCamara: false
         })
     }
   
     render() {
         return (
         <View style={styles.container}>
-            {
-                this.state.mostrarCamara ?
-                <Camera subirFoto={(url)=> this.subirFoto(url)}/> :
-                <>
-                    <TextInput  style={styles.input}
-                        placeholder='Descripción'
-                        onChangeText={text => this.setState({descripcion: text})}
-                        value={this.state.descripcion}
-                        keyboardType='default'
-                    />
-                    <TouchableOpacity onPress={()=> this.guardarPost(this.state.descripcion)}>
-                        <Text style={styles.button}>Compartir</Text>
-                    </TouchableOpacity>
-                </>
-            }
-        </View>
+            <Text>New Post</Text>
+            <Camera subirFoto={url=> this.subirFoto(url)}/> :
+            <TextInput
+                style={styles.input}
+                onChangeText={(text)=>this.setState({descripcion: text})}
+                placeholder='Escribir...'
+                keyboardType='default'
+                value={this.state.descripcion}
+            />
+        <TouchableOpacity style={styles.button} onPress={()=>this.guardarPost(auth.currentUser.email, this.state.descripcion, this.state.fotoUrl, Date.now())}>
+        <Text style={styles.textButton}>Postear</Text>    
+                </TouchableOpacity>
+            </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container:{
-        flex: 1,
-        justifyContent: 'center'
-    },
-    
-    input:{
-        borderColor: '#ccc',
-        borderWidth: 2,
-        marginBottom: 5,
+    formContainer:{
+        paddingHorizontal:10,
+        marginTop: 20,
+        marginBottom: 40,
+        marginHorizontal:30,
         padding: 10,
-        fontSize: 15,
-        borderRadius: 5,
-    },
-
-    button:{
-        textAlign: 'center',
-        backgroundColor: 'green',
-        padding: 5,
-        borderRadius: 8,
         borderWidth: 1,
-        borderColor: '#ccc',
-        marginBottom: 5,
-        fontWeight: 'bold',
-        color:'white',
-        fontSize: 17
+        borderColor: "#ccc",
+        borderRadius: 6,
     },
+    input:{
+        height:20,
+        paddingVertical:15,
+        paddingHorizontal: 10,
+        borderWidth:1,
+        borderColor: '#ccc',
+        borderStyle: 'solid',
+        borderRadius: 6,
+        marginVertical:10,
+    },
+    button:{
+        backgroundColor:'#28a745',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: 'center',
+        borderRadius:4, 
+        borderWidth:1,
+        borderStyle: 'solid',
+        borderColor: '#28a745'
+    },
+    textButton:{
+        color: '#fff'
+    }
+
 })
+
 
 export default NewPosts
