@@ -12,24 +12,23 @@ class NewPosts extends Component {
             fotoUrl: ''
         }
     }
-
-    guardarPost(email,descripcion,fotoUrl,createdAt){
+    
+  
+    guardarPost(email,descripcion,createdAt){
         db.collection('posts').add({
             email: email,
             createdAt: createdAt,
             descripcion: descripcion,
             likes: [],
             comentarios: [],
-            fotoUrl:fotoUrl,
+            fotoUrl:this.state.fotoUrl,
         })
-        .then(res => {
-            console.log('Creando post...');
-            this.setState({
-                descripcion:'',
-            })
-
-        }) 
+        .then (()=> this.props.navigation.navigate('Home'))
         .catch( e => console.log(e))
+        // this.setState({
+        //     descripcion:'',
+        //     fotoUrl:''
+        // })
     }
 
     subirFoto(url){
@@ -37,12 +36,11 @@ class NewPosts extends Component {
             fotoUrl: url,
         })
     }
-  
     render() {
         return (
         <View style={styles.container}>
             <Text>New Post</Text>
-            <Camera subirFoto={url=> this.subirFoto(url)}/> :
+            <Camera subirFoto={(url)=> this.subirFoto(url)}/> 
             <TextInput
                 style={styles.input}
                 onChangeText={(text)=>this.setState({descripcion: text})}
@@ -50,7 +48,7 @@ class NewPosts extends Component {
                 keyboardType='default'
                 value={this.state.descripcion}
             />
-        <TouchableOpacity style={styles.button} onPress={()=>this.guardarPost(auth.currentUser.email, this.state.descripcion, this.state.fotoUrl, Date.now())}>
+        <TouchableOpacity style={styles.button} onPress={()=>this.guardarPost(auth.currentUser.email, this.state.descripcion, Date.now())}>
         <Text style={styles.textButton}>Postear</Text>    
                 </TouchableOpacity>
             </View>
@@ -96,4 +94,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default NewPosts
+export default NewPosts

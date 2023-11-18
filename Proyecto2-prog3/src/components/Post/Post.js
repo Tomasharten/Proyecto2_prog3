@@ -115,9 +115,10 @@ class Post extends Component {
                 <Ionicons name="ios-chatbubble-outline"  color="black" size={30} />
             </TouchableOpacity>
         </View>
-
+<View>
         <Text style={styles.text}>{this.state.cantidadLikes} Me gusta</Text>
         <Text style={styles.descripcion}>{this.props.data.descripcion}</Text> 
+        </View>
 
         {
             this.state.cantidadComentarios === 0 ? 
@@ -206,4 +207,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Post
+export default Post

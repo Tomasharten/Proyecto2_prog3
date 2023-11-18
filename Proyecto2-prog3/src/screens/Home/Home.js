@@ -28,10 +28,6 @@ class Home extends Component {
         })
       })
     }
-    // logout(){
-    //   auth.signOut();
-    //   this.props.navigation.navigate('Login')
-//   }
 
 
   render() {
@@ -46,7 +42,7 @@ class Home extends Component {
         <Text style={styles.title}> HOME PAGE </Text>
         
             <View style={styles.subcontainer}>
-                <FlatList  //// NO ANDA EL SCROL EN HOME
+                <FlatList  
                 data = {this.state.posteos}
                 keyExtractor = {(item) => item.id.toString()}
                 renderItem = {(item) => <Post navigation={this.props.navigation} data={item.item.data} id={item.item.id} />} 

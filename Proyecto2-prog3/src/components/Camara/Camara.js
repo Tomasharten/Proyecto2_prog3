@@ -41,15 +41,13 @@ class Camara extends Component {
         fetch(this.state.fotoUri)
         .then(img => img.blob()) // parceo la imagen en binario a un formato valido para js
         .then(imagenOk =>{
-            const ref = storage.ref(`fotos/${Date.now()}.jpg`) // guardo la imagen en el storage de firebase
+            const ref = storage.ref(`img/${Date.now()}.jpg`) // guardo la imagen en el storage de firebase
             ref.put(imagenOk)
             .then(()=>{
                 ref.getDownloadURL() // trae la ruta real con la que esta guardada la imagen en firebase
-                .then( url =>{
+                .then( (url) =>{
                     this.props.subirFoto(url);
-                    this.setState({
-                        fotoUri: ''
-                    })
+                  
                 })
             })
         })
@@ -150,4 +148,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Camara
+export default Camara
