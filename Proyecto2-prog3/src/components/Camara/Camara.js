@@ -37,7 +37,7 @@ class Camara extends Component {
         
     }
 
-    aceptar(){
+ aceptar(){
         fetch(this.state.fotoUri)
         .then(img => img.blob()) // parceo la imagen en binario a un formato valido para js
         .then(imagenOk =>{
@@ -46,6 +46,7 @@ class Camara extends Component {
             .then(()=>{
                 ref.getDownloadURL() // trae la ruta real con la que esta guardada la imagen en firebase
                 .then( (url) =>{
+                    console.log("URL de la imagen:", url);
                     this.props.subirFoto(url);
                   
                 })

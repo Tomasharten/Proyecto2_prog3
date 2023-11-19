@@ -18,6 +18,8 @@ class Home extends Component {
       db.collection('posts').orderBy('createdAt', 'desc').onSnapshot(docs => {
         let posts = []
         docs.forEach(doc => {
+          const data = doc.data();
+          console.log("Datos del post recuperados:", data); // Agrega este log
           posts.push({
             id: doc.id,
             data: doc.data()

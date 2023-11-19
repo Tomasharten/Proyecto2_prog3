@@ -89,11 +89,11 @@ class Post extends Component {
             </TouchableOpacity>  
         </View>
 
-        <Image style={styles.image}
-            source={{uri: `${this.props.data.fotoUrl}`}}
-            resizeMode = 'cover'
-        />  
-        
+        <Image
+        style={styles.image}
+        source={{ uri: this.props.data.fotoUrl }} 
+        resizeMode="cover"
+      />
         <View style={styles.botones}>
             {
                 this.state.like ?

@@ -14,28 +14,26 @@ class NewPosts extends Component {
     }
     
   
-    guardarPost(email,descripcion,createdAt){
-        db.collection('posts').add({
+    guardarPost(email, descripcion, createdAt) {
+        db.collection('posts')
+          .add({
             email: email,
             createdAt: createdAt,
             descripcion: descripcion,
             likes: [],
             comentarios: [],
-            fotoUrl:this.state.fotoUrl,
-        })
-        .then (()=> this.props.navigation.navigate('Home'))
-        .catch( e => console.log(e))
-        // this.setState({
-        //     descripcion:'',
-        //     fotoUrl:''
-        // })
-    }
-
-    subirFoto(url){
+            fotoUrl: this.state.fotoUrl, // Utiliza 
+          })
+          .then(() => this.props.navigation.navigate('Home'))
+          .catch((e) => console.log(e));
+      }
+      
+      subirFoto(url) {
+        console.log("URL recibida en subirFoto:", url);
         this.setState({
-            fotoUrl: url,
-        })
-    }
+          fotoUrl: url,
+        });
+      }
     render() {
         return (
         <View style={styles.container}>
