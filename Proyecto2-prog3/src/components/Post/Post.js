@@ -90,7 +90,7 @@ class Post extends Component {
         </View>
 
         <Image style={styles.image}
-            source={{uri: `${this.props.data.foto}`}}
+            source={{uri: `${this.props.data.fotoUrl}`}}
             resizeMode = 'cover'
         />  
         
