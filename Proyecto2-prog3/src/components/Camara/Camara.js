@@ -36,8 +36,13 @@ class Camara extends Component {
         .catch(err => console.log(err))
         
     }
-
- aceptar(){
+    rechazar(){
+        this.setState ({
+            mostrarCamara: true,
+            fotoUri: ''
+        })
+    }
+    aceptar(){
         fetch(this.state.fotoUri)
         .then(img => img.blob()) // parceo la imagen en binario a un formato valido para js
         .then(imagenOk =>{
@@ -55,49 +60,45 @@ class Camara extends Component {
         .catch(err => console.log(err))
     }
 
-    rechazar(){
-        this.setState ({
-            mostrarCamara: true,
-            fotoUri: ''
-        })
-    }
+
 
   render() {
     return (
-      <View style={styles.container}>
-        
-        {
-            this.state.permisosDeHardware === true ?
-            this.state.mostrarCamara== false ? 
+        <View style={styles.container}>
+    {
+            this.state.permisosDeHardware ?
+            this.state.mostrarCamara ? 
             <React.Fragment>
-                <Image
-                    source={{uri: this.state.fotoUri}}
-                    style={styles.cameraBody}
-                />
-                <View style={styles.confirm}>
-                    <TouchableOpacity style={styles.cancelButton} onPress={()=> this.rechazar()}>
-                        <Text style= {styles.textButton}> Cancelar</Text>
-                    </TouchableOpacity>
-                <TouchableOpacity style={styles.confirmButton} onPress={()=>this.aceptar()}>
-                <Text style={styles.textButton}>Aceptar</Text>
-                            </TouchableOpacity>
-            </View>
-        </React.Fragment>
+            <Camera
+                style = { styles.cameraBody }
+                type={ Camera.Constants.Type.front}
+                ref={ metodosCamara => this.metodosCamara = metodosCamara}
+            />
+            <TouchableOpacity style = { styles.button } onPress={()=>this.tomarFoto()}>
+                    <Text style = { styles.textButton }>Sacar Foto</Text>
+            </TouchableOpacity> 
+            </React.Fragment>
             :
             <React.Fragment>
-                <Camera
-                    style = { styles.cameraBody }
-                    type={ Camera.Constants.Type.front}
-                    ref={ metodosCamara => this.metodosCamara = metodosCamara}
-                />
-                <TouchableOpacity style = { styles.button } onPress={()=>this.tomarFoto()}>
-                        <Text style = { styles.textButton }>Sacar Foto</Text>
-                </TouchableOpacity> 
+            <Image
+                source={{uri: this.state.fotoUri}}
+                style={styles.cameraBody}
+            />
+            <View style={styles.confirm}>
+                <TouchableOpacity style={styles.confirmButton} onPress={()=>this.aceptar()}>
+                     <Text style={styles.textButton}>Aceptar</Text>
+                    </TouchableOpacity>
+                <TouchableOpacity style={styles.cancelButton} onPress={()=> this.rechazar()}>
+                    <Text style= {styles.textButton}> Cancelar</Text>
+                </TouchableOpacity>
+
+                </View>
                 </React.Fragment>
+
                 :
                 <Text>La cámara no tiene permisos para ser usada</Text>
         } 
-            </View>
+    </View>
     )
   }
 }
