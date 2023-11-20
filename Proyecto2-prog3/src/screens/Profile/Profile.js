@@ -51,7 +51,7 @@ class Profile extends Component {
       <View style={styles.containerDatos}>
         <View style={styles.card}>
           <Image style={styles.image}
-            source={{uri: this.state.misDatos.foto}} 
+            source={{uri: this.state.misDatos.fotoPerfil}} 
             resizeMode = 'cover'
           />
           <View style={styles.usuarioYMail}>
@@ -59,7 +59,7 @@ class Profile extends Component {
             <Text style={styles.textCard}>{this.state.misDatos.email}</Text>
           </View>
         </View>      
-        <Text style={styles.text}>Biografia: {this.state.misDatos.biografia}</Text>   
+        <Text style={styles.text}>Biografia: {this.state.misDatos.biografia}</Text>  
         <Text style={styles.text}>Cantidad de posts: {this.state.posteos.length}</Text>
         <TouchableOpacity onPress={()=> this.cerrarSesion()}>
           <Text style={styles.botton}>Cerrar sesión</Text>
@@ -126,9 +126,9 @@ const styles = StyleSheet.create({
   },
 
   image:{
-    height: "80%",
-    width: "25%",
-    borderRadius: "40%",
+    height: "50%",
+    width: "50%",
+    borderRadius: "100%",
     justifyContent: 'center',
     alignItems: 'center'
   },

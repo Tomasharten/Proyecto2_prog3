@@ -11,7 +11,6 @@ class Register extends Component {
             contrasenia:'',
             usuario:'', 
             biografia:'', 
-            foto:'', 
             error:''
         };
     }
@@ -28,10 +27,10 @@ class Register extends Component {
                     createdAt: Date.now(), 
                     contrasenia: this.state.contrasenia, 
                     biografia: this.state.biografia,
-                    foto:''
+                    fotoDePerfil:''
                 })
             )
-            .then((resp) => this.props.navigation.navigate('Login'))
+            .then((resp) => this.props.navigation.navigate('AgregarPerfil', {docId: resp.id}))
             .catch((error) => console.log(error));
         
         
@@ -43,28 +42,20 @@ class Register extends Component {
         <View>
             <View>
                 <Text style={styles.title} >Completa el formulario</Text>
-
-                        {/* {this.state.errorNombre ?
-                        <Text style={styles.advert}>*Debes ingresar un nombre válido</Text>
-                        : ''} */}
                 <TextInput
                     style={styles.input}
                     placeholder='Nombre de usuario'
                     onChangeText={text => this.setState({usuario: text})}
                     value={this.state.usuario}
                 />
-                {/* {this.state.errorMail ?
-                <Text style={styles.advert}>*Debes ingresar un mail válido</Text>
-                 : ''} */}
+                
                 <TextInput
                     style={styles.input}
                     placeholder='Escribi tu email'
                     onChangeText={text => this.setState({email: text})}
                     value={this.state.email}
                 />
-                {/* {this.state.errorContra ?
-                <Text style={styles.advert}>*Debes ingresar una contraseña válida</Text>
-                 : ''} */}
+                
                 <TextInput
                     style={styles.input}
                     placeholder='Escribi tu contraseña'
@@ -79,11 +70,7 @@ class Register extends Component {
                     onChangeText={text => this.setState({biografia: text})}
                     value={this.state.biografia}
                 />
-                <View>
-                    <TouchableOpacity onPress={()=> this.pickImage()}>
-                        <Text>Foto de perfil</Text>
-                    </TouchableOpacity>
-                </View>
+                
                 <View>
                     <TouchableOpacity onPress={()=> this.register(this.state.email, this.state.contrasenia)}>
                         <Text style = {styles.botton}>Registrarme</Text>

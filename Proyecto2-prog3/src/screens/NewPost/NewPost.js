@@ -22,7 +22,7 @@ class NewPosts extends Component {
             descripcion: descripcion,
             likes: [],
             comentarios: [],
-            fotoUrl: this.state.fotoUrl, // Utiliza 
+            fotoUrl: this.state.fotoUrl, 
           })
           .then(() => this.props.navigation.navigate('Home'))
           .catch((e) => console.log(e));

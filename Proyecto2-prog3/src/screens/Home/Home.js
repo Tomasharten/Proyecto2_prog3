@@ -11,9 +11,6 @@ class Home extends Component {
         }
     }
 //usamos on snapshot para traer lo que esta en firebase
-//on snapshot recibe un callback, el parametro va a tener la inf. q trajo de firebase
-// dentro de ese callback creamos una variable para ir llenando la info con lo que nos trae firebase
-//la info que nos trae firebase es un array con muchas cosas de las cuales solo queremos algunas
     componentDidMount(){
       db.collection('posts').orderBy('createdAt', 'desc').onSnapshot(docs => {
         let posts = []

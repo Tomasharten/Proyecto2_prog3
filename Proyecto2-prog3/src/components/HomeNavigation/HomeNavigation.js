@@ -12,7 +12,7 @@ import Home from "../../screens/Home/Home";
 const Stack = createNativeStackNavigator()
 
 class HomeNavigation extends Component {
-
+// Esta es la navigation de todo lo que se puede hacer desde el home
     render() {
         return (
             <Stack.Navigator style={styles.tab}>

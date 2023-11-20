@@ -2,7 +2,6 @@ import { Text, View, StyleSheet, TextInput, TouchableOpacity,  FlatList, } from 
 import React, { Component } from 'react'
 import { auth, db } from '../../firebase/config'
 import {SearchBar } from 'react-native'
-// import UsersProfile from '../UsersProfile/UsersProfile';
 
 class Search extends Component {
     constructor(props){
