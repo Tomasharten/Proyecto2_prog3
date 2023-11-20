@@ -49,6 +49,10 @@ class Profile extends Component {
     return (
       <>
       <View style={styles.containerDatos}>
+        <Image style={styles.imagen}
+                source={require('../../../assets/Selfie.png')}
+                resizeMode = 'contain' 
+        ></Image> 
         <View style={styles.card}>
           <Image style={styles.image}
             source={{uri: this.state.misDatos.fotoPerfil}} 
@@ -123,6 +127,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color:'white',
     fontSize: 17,
+  },
+  imagen:{
+    height: 130,
+    width:130,
+    marginTop: 5,
+    marginBottom: 10,
+    borderRadius: 500,
+    alignSelf: 'center'
   },
 
   image:{

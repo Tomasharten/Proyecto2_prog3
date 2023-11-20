@@ -12,7 +12,6 @@ class UsersProfile extends Component {
           misDatos: {},
           id:'',
           posteos: [],
-          loader: true
         }
     }
 
@@ -38,7 +37,6 @@ class UsersProfile extends Component {
           })
           this.setState({
               posteos: posts,
-              loader: false
           })
       })
     }
@@ -71,9 +69,11 @@ class UsersProfile extends Component {
    
   render() {
     return (
-        this.state.loader ? <Text>Cargandooo</Text> :
-        <>
         <View style={styles.container}>
+            <Image style={styles.imagen}
+                    source={require('../../../assets/Selfie.png')}
+                    resizeMode = 'contain' 
+            ></Image> 
           <View style={styles.card}>
             <Image style={styles.image}
               source={{uri: this.state.misDatos.foto}} 
@@ -101,7 +101,7 @@ class UsersProfile extends Component {
           <Text>Aun no hay publicaciones</Text>
           }
         </View>
-        </>
+        
       )
     } 
 }
@@ -167,7 +167,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
     marginLeft: "5%",
-  }
+  },
+  imagen:{
+    height: 130,
+    width:130,
+    marginTop: 5,
+    marginBottom: 10,
+    borderRadius: 500,
+    alignSelf: 'center'
+  },
 
   
   

@@ -1,4 +1,4 @@
-import {Text, View, StyleSheet, TextInput, TouchableOpacity} from 'react-native'
+import {Text, View, StyleSheet, TextInput, TouchableOpacity, Image} from 'react-native'
 import React, {Component} from 'react'
 import {db, auth} from '../../firebase/config'
 import {storage} from '../../firebase/config'
@@ -41,6 +41,10 @@ class Register extends Component {
         return (
         <View>
             <View>
+                <Image style={styles.image}
+                    source={require('../../../assets/Selfie.png')}
+                    resizeMode = 'contain' 
+                ></Image> 
                 <Text style={styles.title} >Completa el formulario</Text>
                 <TextInput
                     style={styles.input}
@@ -139,7 +143,15 @@ const styles = StyleSheet.create({
     error:{
         fontSize:16,
         color: 'red'
-      }
+      },
+      image:{
+        height: 130,
+        width:130,
+        marginTop: 5,
+        marginBottom: 10,
+        borderRadius: 500,
+        alignSelf: 'center'
+      },
 })
 
 export default Register

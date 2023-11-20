@@ -1,4 +1,4 @@
-import { Text, View, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
+import { Text, View, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import React, { Component } from 'react'
 import { db, auth } from '../../firebase/config'
 import Camera from '../../components/Camara/Camara'
@@ -37,7 +37,11 @@ class NewPosts extends Component {
     render() {
         return (
         <View style={styles.container}>
-            <Text>New Post</Text>
+            <Image style={styles.image}
+                source={require('../../../assets/Selfie.png')}
+                resizeMode = 'contain' 
+            ></Image> 
+            <Text style={styles.title}>New Post</Text>
             <Camera subirFoto={(url)=> this.subirFoto(url)}/> 
             <TextInput
                 style={styles.input}
@@ -87,7 +91,22 @@ const styles = StyleSheet.create({
     },
     textButton:{
         color: '#fff'
-    }
+    },
+    title:{
+        textAlign: 'center',
+        fontSize: 25,
+        marginBottom: 15,
+        fontWeight: 'bold',
+        color: 'green',
+    },
+    image:{
+        height: 130,
+        width:130,
+        marginTop: 5,
+        marginBottom: 10,
+        borderRadius: 500,
+        alignSelf: 'center'
+    },
 
 })
 
